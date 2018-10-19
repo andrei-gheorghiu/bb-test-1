@@ -1,1 +1,43 @@
-"use strict";function updateCards(){for(var e=document.querySelectorAll(".card"),t=0;t<e.length;t++)resizeCard(e[t])}function resizeCard(e){var t=e.querySelector("card-face");Object.assign(e.parentElement.style,{width:t.offsetWidth+"px",height:t.offsetHeight+"px"})}window.onload=function(){document.querySelector("#verticalCentering").addEventListener("input",function(){document.body.classList[this.checked?"add":"remove"]("vertically-centered")}),document.querySelector("#horizontalFlip").addEventListener("input",function(){document.body.classList[this.checked?"add":"remove"]("horizontal-flip")});for(var e=document.querySelectorAll(".card"),t=0;t<e.length;t++)resizeCard(e[t]),e[t].addEventListener("click",function(e){e.target.closest(".flipper")&&e.target.closest(".card").classList.toggle("is_flipped")});document.body.classList.remove("loading"),window.onresize=function(){updateCards()}};
+"use strict";
+
+window.onload = function () {
+  document.querySelector('#verticalCentering').addEventListener('input', function () {
+    document.body.classList[this.checked ? 'add' : 'remove']('vertically-centered');
+  });
+  document.querySelector('#horizontalFlip').addEventListener('input', function () {
+    document.body.classList[this.checked ? 'add' : 'remove']('horizontal-flip');
+  });
+  var cards = document.querySelectorAll('.card');
+
+  for (var i = 0; i < cards.length; i++) {
+    resizeCard(cards[i]);
+    cards[i].addEventListener('click', function (event) {
+      if (event.target.closest('.flipper')) {
+        event.target.closest('.card').classList.toggle('is_flipped');
+      }
+    });
+  }
+
+  document.body.classList.remove('loading');
+
+  window.onresize = function () {
+    updateCards();
+  };
+};
+
+function updateCards() {
+  var cards = document.querySelectorAll('.card');
+
+  for (var i = 0; i < cards.length; i++) {
+    resizeCard(cards[i]);
+  }
+}
+
+function resizeCard(card) {
+  var face = card.querySelector('card-face');
+  Object.assign(card.parentElement.style, {
+    width: face.offsetWidth + 'px',
+    height: face.offsetHeight + 'px'
+  });
+}
+//# sourceMappingURL=meh.js.map
