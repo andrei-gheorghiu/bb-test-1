@@ -1,10 +1,10 @@
 "use strict";
 
 window.onload = function () {
-  document.querySelector('#verticalCentering').addEventListener('input', function () {
+  document.querySelector('#verticalCentering').addEventListener('change', function () {
     document.body.classList[this.checked ? 'add' : 'remove']('vertically-centered');
   });
-  document.querySelector('#horizontalFlip').addEventListener('input', function () {
+  document.querySelector('#horizontalFlip').addEventListener('change', function () {
     document.body.classList[this.checked ? 'add' : 'remove']('horizontal-flip');
   });
   var cards = document.querySelectorAll('.card');
