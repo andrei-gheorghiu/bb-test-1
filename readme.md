@@ -1,7 +1,7 @@
+1. if not already installed: `npm i -g http-server`
+2. && 
 ```
 git clone https://github.com/andrei-gheorghiu/bb-test-1.git ahg-card
-cd ahg-card
-npm i -g http-server
-http-server
+cd ahg-card && http-server
 ```
-open `http://localhost:8080` in any browser 
+3\.  open `http://localhost:8080` in any browser 
