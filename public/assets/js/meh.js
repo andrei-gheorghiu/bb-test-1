@@ -13,7 +13,7 @@ window.onload = function () {
     resizeCard(cards[i]);
     cards[i].addEventListener('click', function (event) {
       if (event.target.closest('.flipper')) {
-        event.target.closest('.scene').classList.toggle('is_flipped');
+        event.target.closest('.card').classList.toggle('is_flipped');
       }
     });
   }
@@ -35,7 +35,7 @@ function updateCards() {
 
 function resizeCard(card) {
   var face = card.querySelector('card-face');
-  Object.assign(card.parentElement.style, {
+  Object.assign(card.style, {
     width: face.offsetWidth + 'px',
     height: face.offsetHeight + 'px'
   });

@@ -22,7 +22,7 @@
     justify-content: center;
   }
 }
-.scene {
+.card {
   margin-top: 185px;
   @media(max-width: 768px) {
     margin-top: 60px;
@@ -30,8 +30,6 @@
   .vertically-centered & {
     margin-top: 0;
   }
-}
-.card {
   display: flex;
   height: 100%;
   width: 100%;
@@ -241,56 +239,8 @@
 
   }
 }
-/*.scene {
+.container {
   perspective: 1000px;
-  &.is_flipped .card {
-    transform: rotateY(180deg);
-    .horizontal-flip & {
-      transform: rotateX(180deg);
-    }
-  }
-  .card {
-    transform-style: preserve-3d;
-    transition: transform .6s cubic-bezier(.5,0,.3,1);
-    pointer-events: all;
-    position: relative;
-    card-face {
-      transform: rotateY(0);
-      .horizontal-flip & {
-        transform: rotateX(0);
-      }
-      .is_flipped & {
-        transform: rotateY(180deg);
-        .horizontal-flip & {
-          transform: rotateX(180deg);
-        }
-      }
-    }
-    card-back {
-      transform: rotateY( 180deg );
-      .horizontal-flip & {
-        transform: rotateX(180deg);
-      }
-      .is_flipped & {
-        transform: rotateY( 0 );
-        .horizontal-flip & {
-          transform: rotateX(0);
-        }
-      }
-    }
-  }
-}*/
-
-
-.scene {
-  perspective: 1000px;
-}
-
-.scene.is_flipped .card {
-  transform: rotateY(180deg);
-  .horizontal-flip & {
-    transform: rotateX(180deg);
-  }
 }
 
 .card {
@@ -298,10 +248,21 @@
   transition: transform .6s cubic-bezier(.5,0,.3,1);
   transform-style: preserve-3d;
   position: relative;
+  &.is_flipped {
+    transform: rotateY(180deg);
+    .horizontal-flip & {
+      transform: rotateX(180deg);
+    }
+  }
 }
 
 card-face, card-back {
   backface-visibility: hidden;
+  .msie & {
+    > * {
+      transition: opacity .2s linear .2s;
+    }
+  }
 }
 
 card-face {
@@ -310,15 +271,56 @@ card-face {
   left: 0;
   z-index: 2;
   transform: rotateY(0deg);
+  .msie & {
+    > * {
+      opacity: 1;
+    }
+  }
   .horizontal-flip & {
     transform: rotateX(0deg);
+  }
+  .is_flipped & {
+    .msie & {
+      transform: rotateY(180deg);
+      pointer-events: none;
+      > * {
+        opacity: 0;
+      }
+    }
+    .horizontal-flip & {
+      .msie & {
+        transform: rotateX(180deg);
+      }
+    }
   }
 }
 
 card-back {
   transform: rotateY(180deg);
+  .msie & {
+    transform: rotateY(180deg) scale(-1,1);
+    > * {
+      opacity: 0;
+    }
+  }
   .horizontal-flip & {
     transform: rotateX(180deg);
+    .msie & {
+      transform: rotateX(180deg) scale(1,-1);
+    }
+  }
+  .is_flipped & {
+    .msie & {
+      transform: rotateY(0deg) scale(-1,1);
+      > * {
+        opacity: 1;
+      }
+    }
+    .horizontal-flip & {
+      .msie & {
+        transform: rotateX(0deg) scale(1,-1);
+      }
+    }
   }
 }
 
