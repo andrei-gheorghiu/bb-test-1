@@ -282,20 +282,22 @@
 }*/
 
 
-
 .scene {
   perspective: 1000px;
-  &.is_flipped .card{
-    transform: rotateY(180deg);
+}
+
+.scene.is_flipped .card {
+  transform: rotateY(180deg);
+  .horizontal-flip & {
+    transform: rotateX(180deg);
   }
 }
+
 .card {
-  transition: transform .6s cubic-bezier(.5,0,.3,1);
   pointer-events: all;
+  transition: transform .6s cubic-bezier(.5,0,.3,1);
+  transform-style: preserve-3d;
   position: relative;
-  .horizontal-flip &.is_flipped {
-    transform: rotateX(-180deg);
-  }
 }
 
 card-face, card-back {
@@ -303,35 +305,32 @@ card-face, card-back {
 }
 
 card-face {
+  position: absolute;
   top: 0;
   left: 0;
-  position: absolute;
   z-index: 2;
   transform: rotateY(0deg);
   .horizontal-flip & {
     transform: rotateX(0deg);
   }
-  .is_flipped & {
-    transform: rotateY(180deg);
-    .horizontal-flip & {
-      transform: rotateX(180deg);
-    }
-  }
 }
+
 card-back {
-  position: relative;
   transform: rotateY(180deg);
   .horizontal-flip & {
     transform: rotateX(180deg);
   }
-  .is_flipped & {
-    transform: rotateY(0);
-    .horizontal-flip & {
-      transform: rotateX(0);
-    }
-  }
-
 }
+
+
+
+
+
+
+
+
+
+
 
 card-face, card-back {
   backface-visibility: hidden;
