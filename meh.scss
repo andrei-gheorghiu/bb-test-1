@@ -288,7 +288,6 @@
   &.is_flipped .card{
     transform: rotateY(180deg);
   }
-
 }
 .card {
   transition: transform .6s cubic-bezier(.5,0,.3,1);
@@ -309,14 +308,29 @@ card-face {
   position: absolute;
   z-index: 2;
   transform: rotateY(0deg);
+  .horizontal-flip & {
+    transform: rotateX(0deg);
+  }
+  .is_flipped & {
+    transform: rotateY(180deg);
+    .horizontal-flip & {
+      transform: rotateX(180deg);
+    }
+  }
 }
-
 card-back {
   position: relative;
   transform: rotateY(180deg);
   .horizontal-flip & {
     transform: rotateX(180deg);
   }
+  .is_flipped & {
+    transform: rotateY(0);
+    .horizontal-flip & {
+      transform: rotateX(0);
+    }
+  }
+
 }
 
 card-face, card-back {

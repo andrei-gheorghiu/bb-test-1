@@ -13,7 +13,7 @@ window.onload = function () {
     resizeCard(cards[i]);
     cards[i].addEventListener('click', function (event) {
       if (event.target.closest('.flipper')) {
-        event.target.closest('.card').classList.toggle('is_flipped');
+        event.target.closest('.scene').classList.toggle('is_flipped');
       }
     });
   }
