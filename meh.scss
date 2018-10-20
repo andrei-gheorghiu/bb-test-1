@@ -1,5 +1,8 @@
+$text-color:#212121;
+$card-bgcol:#ffffff;
 :root {
   --title-color: #008a99;
+  --text-color: $text-color;
   --title-shadow: rgba(0, 212, 255, .42);
   --accent: #ffbc36;
   --hover-accent: #ffa500;
@@ -22,7 +25,7 @@
     justify-content: center;
   }
 }
-.scene {
+.card {
   margin-top: 185px;
   @media(max-width: 768px) {
     margin-top: 60px;
@@ -30,8 +33,6 @@
   .vertically-centered & {
     margin-top: 0;
   }
-}
-.card {
   display: flex;
   height: 100%;
   width: 100%;
@@ -76,7 +77,7 @@
     margin: 0 -4px;
     width: calc(100% + 8px);
     button {
-      color: #000;
+      color: var(--text-color);
       margin: 3px;
       flex: 1;
       background-color: var(--button);
@@ -102,7 +103,8 @@
         top: 50%;
         left: 0;
         transform: translate(100%, -50%);
-        background: url(../sync-solid.svg) no-repeat 50% 50%/contain;
+        //noinspection CssUnknownTarget
+        background: url(../sync-solid.svg) no-repeat 50% 50%;
         opacity: 0;
         transition: opacity .21s cubic-bezier(.5,0,.3,1);
       }
@@ -114,6 +116,8 @@
     }
   }
   card-face {
+    top: 0;
+    left: 0;
     display: flex;
     min-width: 682px;
     position: absolute;
@@ -149,12 +153,12 @@
                           90deg,
                           transparent,
                           transparent 2px,
-                          rgba(0, 0, 0, 0.21) 2px,
-                          rgba(0, 0, 0, 0.21) 4px
+                          transparentize($text-color, .79) 2px,
+                          transparentize($text-color, .79) 4px
           );
         }
         &::-webkit-scrollbar-thumb {
-          background-color: #cacaca;
+          background-color: mix(white, $text-color, 90%);
           border-radius: 0;
         }
       }
@@ -170,9 +174,9 @@
         left: 0;
         width: calc(100% - 9px);
         height: 2.7rem;
-        background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
-        background: linear-gradient(to bottom, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+        background: -moz-linear-gradient(top, transparentize($card-bgcol,1) 0%, $card-bgcol 100%);
+        background: -webkit-linear-gradient(top, transparentize($card-bgcol,1) 0%,$card-bgcol 100%);
+        background: linear-gradient(to bottom, transparentize($card-bgcol,1) 0%,$card-bgcol 100%);
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
       }
     }
@@ -186,9 +190,9 @@
         content: '';
         pointer-events: none;
         position: absolute;
-        background: -moz-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-        background: -webkit-linear-gradient(top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
-        background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+        background: -moz-linear-gradient(top, transparentize($card-bgcol,1) 0%, $card-bgcol 100%);
+        background: -webkit-linear-gradient(top, transparentize($card-bgcol,1) 0%, $card-bgcol 100%);
+        background: linear-gradient(to bottom, transparentize($card-bgcol,1) 0%, $card-bgcol 100%);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff', GradientType=0);
         transform: scale(1, -1);
         top: 100%;
@@ -241,97 +245,6 @@
 
   }
 }
-/*.scene {
-  perspective: 1000px;
-  &.is_flipped .card {
-    transform: rotateY(180deg);
-    .horizontal-flip & {
-      transform: rotateX(180deg);
-    }
-  }
-  .card {
-    transform-style: preserve-3d;
-    transition: transform .6s cubic-bezier(.5,0,.3,1);
-    pointer-events: all;
-    position: relative;
-    card-face {
-      transform: rotateY(0);
-      .horizontal-flip & {
-        transform: rotateX(0);
-      }
-      .is_flipped & {
-        transform: rotateY(180deg);
-        .horizontal-flip & {
-          transform: rotateX(180deg);
-        }
-      }
-    }
-    card-back {
-      transform: rotateY( 180deg );
-      .horizontal-flip & {
-        transform: rotateX(180deg);
-      }
-      .is_flipped & {
-        transform: rotateY( 0 );
-        .horizontal-flip & {
-          transform: rotateX(0);
-        }
-      }
-    }
-  }
-}*/
-
-
-.scene {
-  perspective: 1000px;
-}
-
-.scene.is_flipped .card {
-  transform: rotateY(180deg);
-  .horizontal-flip & {
-    transform: rotateX(180deg);
-  }
-}
-
-.card {
-  pointer-events: all;
-  transition: transform .6s cubic-bezier(.5,0,.3,1);
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-card-face, card-back {
-  backface-visibility: hidden;
-}
-
-card-face {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  transform: rotateY(0deg);
-  .horizontal-flip & {
-    transform: rotateX(0deg);
-  }
-}
-
-card-back {
-  transform: rotateY(180deg);
-  .horizontal-flip & {
-    transform: rotateX(180deg);
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
 card-face, card-back {
   backface-visibility: hidden;
   box-shadow: var(--box-shadow);
@@ -366,6 +279,89 @@ body {
     flex-wrap: wrap;
     .card  & button {
       flex: 1 1 45%;
+    }
+  }
+}
+
+/** separated 3d stuff, for debugging **/
+
+.container {
+  perspective: 1000px;
+}
+
+.card {
+  pointer-events: all;
+  transition: transform .6s cubic-bezier(.5,0,.3,1);
+  transform-style: preserve-3d;
+  position: relative;
+  &.is_flipped {
+    transform: rotateY(180deg);
+    .horizontal-flip & {
+      transform: rotateX(180deg);
+    }
+  }
+}
+
+card-face, card-back {
+  backface-visibility: hidden;
+  .msie & {
+    > * {
+      transition: opacity .2s linear .2s;
+    }
+  }
+}
+
+card-face {
+  transform: rotateY(0deg);
+  .msie & {
+    > * {
+      opacity: 1;
+    }
+  }
+  .horizontal-flip & {
+    transform: rotateX(0deg);
+  }
+  .is_flipped & {
+    .msie & {
+      transform: rotateY(180deg);
+      pointer-events: none;
+      > * {
+        opacity: 0;
+      }
+    }
+    .horizontal-flip & {
+      .msie & {
+        transform: rotateX(180deg);
+      }
+    }
+  }
+}
+
+card-back {
+  transform: rotateY(180deg);
+  .msie & {
+    transform: rotateY(180deg) scale(-1,1);
+    > * {
+      opacity: 0;
+    }
+  }
+  .horizontal-flip & {
+    transform: rotateX(180deg);
+    .msie & {
+      transform: rotateX(180deg) scale(1,-1);
+    }
+  }
+  .is_flipped & {
+    .msie & {
+      transform: rotateY(0deg) scale(-1,1);
+      > * {
+        opacity: 1;
+      }
+    }
+    .horizontal-flip & {
+      .msie & {
+        transform: rotateX(0deg) scale(1,-1);
+      }
     }
   }
 }

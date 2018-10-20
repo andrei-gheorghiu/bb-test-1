@@ -6,7 +6,7 @@
     git clone https://github.com/andrei-gheorghiu/bb-test-1.git ahg-card
     cd ahg-card && http-server
     ```
-3.  open `http://localhost:8080` in any browser 
+3.  open `http://127.0.0.1:8080` in any browser 
 
 ## Known issues
 
