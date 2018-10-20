@@ -3,3 +3,5 @@
 !.gitignore
 !readme.md
 !*.scss
+!GruntFile.js
+!package.json
