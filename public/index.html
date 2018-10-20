@@ -78,7 +78,10 @@
     </div>
 </div>
 <script type="application/javascript" src="assets/js/modernizr-preserve-3d.js"></script>
-<script type="application/javascript" src="assets/js/polyfills-ie.js"></script>
+<script type="application/javascript">
+	if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+		document.write('<script src="assets/js/polyfills-ie.js"><\/script>');
+</script>
 <script type="application/javascript" src="assets/js/meh.js"></script>
 </body>
 </html>
