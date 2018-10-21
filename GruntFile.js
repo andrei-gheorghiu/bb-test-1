@@ -46,7 +46,6 @@ module.exports = function (grunt) {
 		}
 	});
 	grunt.loadNpmTasks('grunt-postcss');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.registerTask('default', ["watch:styles"]);
-	grunt.registerTask('bb', ["postcss:bb", "babel"]);
+	grunt.registerTask('default', ["postcss:bb"]);
+	grunt.registerTask('build', ["postcss:bb", "babel"]);
 };
