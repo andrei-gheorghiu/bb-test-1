@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": ":)",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "@babel/preset-env": "^7.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.2",
     "autoprefixer": "^9.2.1",
